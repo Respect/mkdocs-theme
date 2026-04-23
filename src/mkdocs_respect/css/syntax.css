@@ -1,0 +1,139 @@
+/* ---------- Inline code & code blocks ---------- */
+.prose code,
+.prose kbd,
+.prose pre {
+  font-family: 'Ubuntu Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+}
+
+.prose code {
+  background: var(--code-bg);
+  padding: 0.12em 0.4em;
+  border-radius: 4px;
+  border: 1px solid var(--code-border);
+  color: var(--text-primary);
+}
+
+.prose pre {
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin: 0 0 1.25rem;
+  line-height: 1.55;
+}
+
+.prose pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-size: 0.9em;
+}
+
+.prose .codehilite,
+.prose .highlight {
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 12px;
+  margin: 0 0 1.25rem;
+  overflow: hidden;
+}
+.prose .codehilite pre,
+.prose .highlight pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* Pygments token colors (light, monochrome with subtle accents) */
+.highlight .c, .highlight .c1, .highlight .cm, .highlight .cs { color: #6a737d; font-style: italic; } /* comment */
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt { color: #d73a49; } /* keyword */
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx { color: #032f62; } /* string */
+.highlight .nb, .highlight .nf, .highlight .nc { color: #6f42c1; } /* names */
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi { color: #e36209; }
+.highlight .mi, .highlight .mf, .highlight .mh, .highlight .mo, .highlight .m { color: #005cc5; }
+.highlight .o, .highlight .ow { color: #d73a49; }
+.highlight .err { color: #b31d28; background: #ffeef0; }
+.highlight .gd { color: #b31d28; background: #ffeef0; }
+.highlight .gi { color: #22863a; background: #f0fff4; }
+
+/* ---------- Tables ---------- */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.prose thead { background: var(--card-bg); }
+.prose th, .prose td {
+  text-align: left;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.prose th { font-weight: 700; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose tbody tr:hover { background: var(--card-bg); }
+
+/* ---------- Blockquote ---------- */
+.prose blockquote {
+  border-left: 4px solid var(--accent);
+  padding: 0.5rem 1rem;
+  background: var(--card-bg);
+  border-radius: 0 8px 8px 0;
+  color: var(--text-secondary);
+  margin: 1rem 0;
+}
+.prose blockquote p:last-child { margin-bottom: 0; }
+
+/* ---------- Admonitions (markdown-extensions: admonition) ---------- */
+.prose .admonition {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  padding: 0.85rem 1.1rem;
+  margin: 1.25rem 0;
+}
+.prose .admonition-title {
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+}
+.prose .admonition-title::before {
+  content: '';
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.prose .admonition.note,
+.prose .admonition.info { border-left-color: #2563eb; }
+.prose .admonition.note .admonition-title::before,
+.prose .admonition.info .admonition-title::before { background: #2563eb; }
+
+.prose .admonition.tip,
+.prose .admonition.success { border-left-color: #16a34a; }
+.prose .admonition.tip .admonition-title::before,
+.prose .admonition.success .admonition-title::before { background: #16a34a; }
+
+.prose .admonition.warning,
+.prose .admonition.caution { border-left-color: #d97706; }
+.prose .admonition.warning .admonition-title::before,
+.prose .admonition.caution .admonition-title::before { background: #d97706; }
+
+.prose .admonition.danger,
+.prose .admonition.error { border-left-color: #dc2626; }
+.prose .admonition.danger .admonition-title::before,
+.prose .admonition.error .admonition-title::before { background: #dc2626; }
+
+/* Task lists */
+.prose ul.task-list { list-style: none; padding-left: 1rem; }
+.prose .task-list-item input[type="checkbox"] { margin-right: 0.5rem; }

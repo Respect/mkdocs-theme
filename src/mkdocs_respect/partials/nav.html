@@ -1,0 +1,18 @@
+{% macro render_nav(items) %}
+<ul class="nav-list">
+  {% for item in items %}
+    <li class="nav-item{% if item.active %} is-active{% endif %}{% if item.children %} is-section{% endif %}">
+      {% if item.children %}
+        <span class="nav-section-title">{{ item.title }}</span>
+        {{ render_nav(item.children) }}
+      {% else %}
+        <a class="nav-link{% if item.active %} is-active{% endif %}" href="{{ item.url | url }}">{{ item.title }}</a>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+
+<div class="sidebar-inner">
+  {{ render_nav(nav) }}
+</div>

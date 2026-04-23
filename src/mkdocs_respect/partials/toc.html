@@ -1,0 +1,15 @@
+{% macro render_toc(items) %}
+<ul class="toc-list">
+  {% for item in items %}
+    <li class="toc-item">
+      <a class="toc-link" href="{{ item.url }}">{{ item.title }}</a>
+      {% if item.children %}{{ render_toc(item.children) }}{% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+
+<div class="toc-inner">
+  <p class="toc-title">On this page</p>
+  {{ render_toc(page.toc.items) }}
+</div>

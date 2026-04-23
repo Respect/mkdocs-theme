@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mkdocs-respect"
+dynamic = ["version"]
+description = "MkDocs theme for the Respect organization — minimalist, monochrome, Ubuntu typography."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "Respect" }]
+keywords = ["mkdocs", "theme", "documentation", "respect"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Documentation",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Text Processing :: Markup :: HTML",
+]
+dependencies = [
+    "mkdocs>=1.5",
+    "Pygments>=2.16",
+]
+
+[project.optional-dependencies]
+dev = ["pymdown-extensions>=10"]
+
+[project.urls]
+Homepage = "https://respect.github.io"
+Repository = "https://github.com/Respect/mkdocs-respect"
+
+[project.entry-points."mkdocs.themes"]
+respect = "mkdocs_respect"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.dynamic]
+version = { attr = "mkdocs_respect.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mkdocs_respect = [
+    "*.html",
+    "*.yml",
+    "partials/*.html",
+    "css/*.css",
+    "js/*.js",
+    "img/*",
+]

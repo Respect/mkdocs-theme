@@ -1,0 +1,34 @@
+site_name: Respect\mkdocs-theme
+site_description: MkDocs theme for the Respect organization.
+site_url: https://respect.github.io/mkdocs-respect/
+
+theme:
+  name: respect
+  logo: logo.svg
+  social:
+    - icon: github
+      link: https://github.com/Respect
+      name: GitHub
+    - icon: linkedin
+      link: https://www.linkedin.com/company/respect-php
+      name: LinkedIn
+  footer_text: © Respect. Released under the MIT License.
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - tables
+  - footnotes
+  - def_list
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: false
+  - pymdownx.tasklist:
+      custom_checkbox: true

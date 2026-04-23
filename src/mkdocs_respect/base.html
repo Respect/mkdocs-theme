@@ -1,0 +1,118 @@
+{% set lang = config.theme.language or 'en' %}
+<!DOCTYPE html>
+<html lang="{{ lang }}" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {%- block site_meta %}
+    {% if page and page.meta and page.meta.description %}
+      <meta name="description" content="{{ page.meta.description }}">
+    {% elif config.site_description %}
+      <meta name="description" content="{{ config.site_description }}">
+    {% endif %}
+    {% if config.site_author %}<meta name="author" content="{{ config.site_author }}">{% endif %}
+    {% if page and page.canonical_url %}<link rel="canonical" href="{{ page.canonical_url }}">{% endif %}
+    {% if config.theme.favicon %}
+      <link rel="icon" href="{{ config.theme.favicon | url }}">
+    {% endif %}
+  {%- endblock %}
+
+  <title>{%- block htmltitle -%}
+    {%- if page and page.title and not page.is_homepage -%}
+      {{ page.title }} – {{ config.site_name }}
+    {%- else -%}
+      {{ config.site_name }}
+    {%- endif -%}
+  {%- endblock -%}</title>
+
+  {%- block styles %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ 'css/respect.css' | url }}">
+    <link rel="stylesheet" href="{{ 'css/nav.css' | url }}">
+    <link rel="stylesheet" href="{{ 'css/syntax.css' | url }}">
+    {% for path in config.extra_css %}
+      <link rel="stylesheet" href="{{ path | url }}">
+    {% endfor %}
+    <noscript>
+      <style>.search-trigger, .search-modal { display: none !important; }</style>
+    </noscript>
+  {%- endblock %}
+
+  {%- block libs %}{%- endblock %}
+  {%- block analytics %}{%- endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+{%- block header %}
+  {% include "partials/header.html" %}
+{%- endblock %}
+
+{%- block container %}
+<div class="layout">
+  {%- block sidebar %}
+    {% if nav %}
+      <aside class="sidebar" id="sidebar" aria-label="Site navigation">
+        {% include "partials/nav.html" %}
+      </aside>
+    {% endif %}
+  {%- endblock %}
+
+  <main class="content" id="content">
+    {%- block content %}
+      <article class="prose">
+        {{ page.content }}
+      </article>
+      {%- block pagination %}
+        {% if page and (page.previous_page or page.next_page) %}
+          <nav class="pagination" aria-label="Page navigation">
+            {% if page.previous_page %}
+              <a class="pagination-prev" href="{{ page.previous_page.url | url }}" rel="prev">
+                <span class="pagination-label">Previous</span>
+                <span class="pagination-title">{{ page.previous_page.title }}</span>
+              </a>
+            {% else %}<span></span>{% endif %}
+            {% if page.next_page %}
+              <a class="pagination-next" href="{{ page.next_page.url | url }}" rel="next">
+                <span class="pagination-label">Next</span>
+                <span class="pagination-title">{{ page.next_page.title }}</span>
+              </a>
+            {% else %}<span></span>{% endif %}
+          </nav>
+        {% endif %}
+      {%- endblock %}
+    {%- endblock %}
+  </main>
+
+  {%- block toc %}
+    {% if page and page.toc and page.toc.items %}
+      <aside class="toc" aria-label="Page contents">
+        {% include "partials/toc.html" %}
+      </aside>
+    {% endif %}
+  {%- endblock %}
+</div>
+{%- endblock %}
+
+{%- block footer %}
+  {% include "partials/footer.html" %}
+{%- endblock %}
+
+{%- block search_modal %}
+  {% include "partials/search-modal.html" %}
+{%- endblock %}
+
+{%- block scripts %}
+  <script src="{{ 'js/theme.js' | url }}" defer></script>
+  <script src="{{ 'js/version.js' | url }}" defer></script>
+  {% if 'search' in config.plugins %}
+    <script src="{{ 'js/search.js' | url }}" defer></script>
+  {% endif %}
+  {% for path in config.extra_javascript %}
+    <script src="{{ path | url }}" defer></script>
+  {% endfor %}
+{%- endblock %}
+
+</body>
+</html>

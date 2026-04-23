@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block htmltitle %}Not Found – {{ config.site_name }}{% endblock %}
+
+{% block content %}
+<article class="prose not-found">
+  <h1>404</h1>
+  <p class="tagline">The page you’re looking for can’t be found.</p>
+  <p><a href="{{ '' | url }}">Return home</a></p>
+</article>
+{% endblock %}
